@@ -1,0 +1,12 @@
+{
+  "name": "rikmeijer/well-known-query",
+  "description": "Through .well-known/query sites can provide clients with search results using their own indexing. Making search decentralized.",
+  "minimum-stability": "dev",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Rik Meijer",
+      "email": "well-known-query@rikmeijer.nl"
+    }
+  ]
+}
