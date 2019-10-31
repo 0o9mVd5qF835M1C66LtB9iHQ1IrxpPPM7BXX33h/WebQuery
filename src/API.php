@@ -9,7 +9,7 @@ use Psr\Http\Message\StreamInterface;
 class API
 {
 
-    public static function post(string $string) : ResponseInterface
+    public static function handle(string $method, array $parameters) : ResponseInterface
     {
         return new class implements ResponseInterface {
 
@@ -70,7 +70,7 @@ class API
              */
             public function getHeaders()
             {
-                // TODO: Implement getHeaders() method.
+                return [];
             }
 
             /**

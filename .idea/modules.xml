@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/well-known-query.iml" filepath="$PROJECT_DIR$/.idea/well-known-query.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../WebQuery/.idea/WebQuery.iml" filepath="$PROJECT_DIR$/../WebQuery/.idea/WebQuery.iml" />
     </modules>
   </component>
 </project>
