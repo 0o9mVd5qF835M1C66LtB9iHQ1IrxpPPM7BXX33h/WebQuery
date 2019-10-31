@@ -25,25 +25,22 @@ class APITest extends TestCase
         $this->assertTrue(true);
     }
 
-    final public function testAPIhandleServerRequest_When_PUTMethod_Expect_405Response(): void
+
+    /**
+     * @dataProvider disallowedMethods
+     */
+    final public function testAPIhandleServerRequest_When_DisallowedMethod_Expect_405Response(string $method): void
     {
-        $response = API::handleServerRequest(new ServerRequest('PUT', '/.well-known/query'));
+        $response = API::handleServerRequest(new ServerRequest($method, '/.well-known/query'));
         $this->assert405Response($response);
     }
-    final public function testAPIhandleServerRequest_When_DELETEMethod_Expect_405Response(): void
-    {
-        $response = API::handleServerRequest(new ServerRequest('DELETE', '/.well-known/query'));
-        $this->assert405Response($response);
-    }
-    final public function testAPIhandleServerRequest_When_HEADMethod_Expect_405Response(): void
-    {
-        $response = API::handleServerRequest(new ServerRequest('HEAD', '/.well-known/query'));
-        $this->assert405Response($response);
-    }
-    final public function testAPIhandleServerRequest_When_OPTIONSMethod_Expect_405Response(): void
-    {
-        $response = API::handleServerRequest(new ServerRequest('OPTIONS', '/.well-known/query'));
-        $this->assert405Response($response);
+    final public function disallowedMethods() : array {
+        return [
+            ['PUT'],
+            ['DELETE'],
+            ['HEAD'],
+            ['OPTIONS'],
+        ];
     }
 
 
