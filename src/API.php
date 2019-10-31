@@ -13,7 +13,7 @@ class API
     {
         switch ($request->getMethod()) {
             case 'POST':
-                return new Response(201);
+                return new Response(201, ['Content-Type' => 'application/json']);
             default:
                 return new Response(200, ['Content-Type' => 'application/json']);
         }
