@@ -25,6 +25,21 @@ class APITest extends TestCase
         $response = API::handleServerRequest(new ServerRequest('PUT', '/.well-known/query'));
         $this->assertEquals(405, $response->getStatusCode());
     }
+    final public function testAPIhandleServerRequest_When_DELETEMethod_Expect_405Response(): void
+    {
+        $response = API::handleServerRequest(new ServerRequest('DELETE', '/.well-known/query'));
+        $this->assertEquals(405, $response->getStatusCode());
+    }
+    final public function testAPIhandleServerRequest_When_HEADMethod_Expect_405Response(): void
+    {
+        $response = API::handleServerRequest(new ServerRequest('HEAD', '/.well-known/query'));
+        $this->assertEquals(405, $response->getStatusCode());
+    }
+    final public function testAPIhandleServerRequest_When_OPTIONSMethod_Expect_405Response(): void
+    {
+        $response = API::handleServerRequest(new ServerRequest('OPTIONS', '/.well-known/query'));
+        $this->assertEquals(405, $response->getStatusCode());
+    }
 
 
     final public function testAPIhandleServerRequest_When_GETDefaultURI_Expect_200Response(): void
