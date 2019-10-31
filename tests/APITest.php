@@ -11,4 +11,11 @@ class APITest extends TestCase
     {
         $this->assertTrue(true);
     }
+
+    final public function testAPI() : void
+    {
+        $response = API::post('hello');
+        $this->assertEquals('201', $response->getStatusCode());
+    }
+
 }
