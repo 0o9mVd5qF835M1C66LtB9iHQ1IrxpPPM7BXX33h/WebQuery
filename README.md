@@ -3,31 +3,34 @@ Proposal to use .well-known/query to query a website by a search-term. Making it
 
 Please contact me for suggestions or improvements!
 
-## Request
+## 1. Create a new search query
 POST .well-known/query?q=Hello
+```json
 {
   "mime-type" : "*",
 }
+```
 
-## Response
+## 2. Server sends location of new search query
+201 Created
 Location: .well-known/query/<SEARCH-ID>
   
-## Request
-Dynamic resource containing already gathered search results. 
+## 3. Dynamically updated resource containing already gathered search results
 GET .well-known/query/<SEARCH-ID>?[offset=0]
 
-## Response
+## 4. Actual response
+200 OK
+```json
 {
   "state" : "collecting|done",
+  "ttl" : 300,
   "results" : {
     "http://example.com/home" : {
       "context" : "Lorem ipsum *Hello* dolor sit amet",
-      "location" : [lat, long],
-      "mime-type" : "text/html"
-      "content-rating" : "R", // perhaps use ring of trust?
+      "location" : [52.0239023, 33.0923023],
+      "mime-type" : "text/html",
       "language" : "en"
     }
   }
 }
-
-
+```
