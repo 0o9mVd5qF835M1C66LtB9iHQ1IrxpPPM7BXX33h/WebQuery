@@ -23,7 +23,7 @@ class APITest extends TestCase
         $response = API::handleServerRequest(new ServerRequest('GET', '/.well-known/query'));
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertJSONResponse($response);
-        $this->assertEquals('{}', $response->getBody()->__toString());
+        $this->assertJson('{}', $response->getBody()->__toString());
     }
 
     final public function testAPIhandleServerRequest_When_POSTCreateQuery_Expect_201Response(): void
@@ -31,6 +31,6 @@ class APITest extends TestCase
         $response = API::handleServerRequest(new ServerRequest('POST', '/.well-known/query?q=hello'));
         $this->assertEquals(201, $response->getStatusCode());
         $this->assertJSONResponse($response);
-        $this->assertEquals('{}', $response->getBody()->__toString());
+        $this->assertJson('{}', $response->getBody()->__toString());
     }
 }
