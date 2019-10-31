@@ -12,13 +12,15 @@ class API
     public static function handleServerRequest(ServerRequestInterface $request): ResponseInterface
     {
         $headers = ['Content-Type' => 'application/json'];
-        $body = '{}';
         switch ($request->getMethod()) {
             case 'POST':
                 $headers['Location'] = '/.well-known/query/12345';
-                return new Response(201, $headers, $body);
+                return new Response(201, $headers, '{}');
             default:
-                return new Response(200, $headers, $body);
+                if ($request->getUri()->getPath() === '/.well-known/query/12345') {
+                    return new Response(200, $headers, '{"results":[]}');
+                }
+                return new Response(200, $headers, '{}');
         }
     }
 }

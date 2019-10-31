@@ -12,7 +12,7 @@ class APITest extends TestCase
     private function assertJSONResponse(string $expectedJson, ResponseInterface $response): void
     {
         $this->assertEquals('application/json', $response->getHeader('Content-Type')[0]);
-        $this->assertJson($expectedJson, $response->getBody()->__toString());
+        $this->assertJsonStringEqualsJsonString($expectedJson, (string)$response->getBody());
     }
 
     final public function testSanity(): void
@@ -29,9 +29,13 @@ class APITest extends TestCase
 
     final public function testAPIhandleServerRequest_When_POSTCreateQuery_Expect_201Response(): void
     {
-        $response = API::handleServerRequest(new ServerRequest('POST', '/.well-known/query?q=hello'));
-        $this->assertEquals(201, $response->getStatusCode());
-        $this->assertJsonResponse('{}', $response);
-        $response->getHeader('Location')[0];
+        $responseCreateQuery = API::handleServerRequest(new ServerRequest('POST', '/.well-known/query?q=hello'));
+        $this->assertEquals(201, $responseCreateQuery->getStatusCode());
+        $this->assertJsonResponse('{}', $responseCreateQuery);
+        $resultsLocation = $responseCreateQuery->getHeader('Location')[0];
+
+        $responseResults = API::handleServerRequest(new ServerRequest('GET', $resultsLocation));
+        $this->assertEquals(200, $responseResults->getStatusCode());
+        $this->assertJsonResponse('{"results":[]}', $responseResults);
     }
 }
