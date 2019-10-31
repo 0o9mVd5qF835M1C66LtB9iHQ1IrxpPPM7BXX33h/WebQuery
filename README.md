@@ -1,4 +1,4 @@
-# well-known-query
+# WebQuery
 Proposal to use .well-known/query to query a website by a search-term. Making it possible to decentralize web search operations. Every website manages their own "search engine", clients can search those by request .well-known/query?q=Hello. Clients can be aggregates which search several websites. To bootstrap this project one aggregate can implement plugins for Google, DuckDuckGo etc. until enough sites can be queried directly.
 
 Please contact me for suggestions or improvements!
