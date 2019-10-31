@@ -20,6 +20,13 @@ class APITest extends TestCase
         $this->assertTrue(true);
     }
 
+    final public function testAPIhandleServerRequest_When_PUTMethod_Expect_405Response(): void
+    {
+        $response = API::handleServerRequest(new ServerRequest('PUT', '/.well-known/query'));
+        $this->assertEquals(405, $response->getStatusCode());
+    }
+
+
     final public function testAPIhandleServerRequest_When_GETDefaultURI_Expect_200Response(): void
     {
         $response = API::handleServerRequest(new ServerRequest('GET', '/.well-known/query'));

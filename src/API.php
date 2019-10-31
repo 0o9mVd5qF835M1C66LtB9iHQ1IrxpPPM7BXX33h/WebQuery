@@ -16,6 +16,9 @@ class API
             case 'POST':
                 $headers['Location'] = '/.well-known/query/12345';
                 return new Response(201, $headers, '{}');
+            case 'PUT':
+                return new Response(405, $headers, '{}');
+
             default:
                 if ($request->getUri()->getPath() === '/.well-known/query/12345') {
                     return new Response(200, $headers, '{"results":[]}');
