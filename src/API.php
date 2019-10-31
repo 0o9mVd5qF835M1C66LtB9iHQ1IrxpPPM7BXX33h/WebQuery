@@ -11,6 +11,6 @@ class API
 
     public static function handle(): ResponseInterface
     {
-        return new Response(201);
+        return new Response(200);
     }
 }
