@@ -19,8 +19,10 @@ class API
             case 'GET':
                 if ($request->getUri()->getPath() === '/.well-known/query/12345') {
                     return new Response(200, $headers, '{"results":[]}');
+                } elseif ($request->getUri()->getPath() === '/.well-known/query') {
+                    return new Response(200, $headers, '{}');
                 }
-                return new Response(200, $headers, '{}');
+                return new Response(404, $headers, '{}');
 
             default:
                 return new Response(405, $headers, '{}');

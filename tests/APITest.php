@@ -49,6 +49,12 @@ class APITest extends TestCase
         $this->assertJsonResponse('{}', $response);
     }
 
+    final public function testAPIhandleServerRequest_When_GETNonExistingURI_Expect_404Response(): void
+    {
+        $response = API::handleServerRequest(new ServerRequest('GET', '/.well-known/query/NonExisting'));
+        $this->assertEquals(404, $response->getStatusCode());
+    }
+
     final public function testAPIhandleServerRequest_When_POSTCreateQuery_Expect_201Response(): void
     {
         $responseCreateQuery = API::handleServerRequest(new ServerRequest('POST', '/.well-known/query?q=hello'));
