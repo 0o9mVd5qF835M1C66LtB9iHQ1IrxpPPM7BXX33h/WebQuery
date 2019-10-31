@@ -71,6 +71,6 @@ class APITest extends TestCase
 
         $responseResults = API::handleServerRequest(new ServerRequest('GET', $resultsLocation));
         $this->assertEquals(200, $responseResults->getStatusCode());
-        $this->assertJsonResponse('{"results":[]}', $responseResults);
+        $this->assertJsonResponse('{"results":{}}', $responseResults);
     }
 }
