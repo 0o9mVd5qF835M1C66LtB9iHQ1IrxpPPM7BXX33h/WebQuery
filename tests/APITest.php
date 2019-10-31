@@ -15,7 +15,7 @@ class APITest extends TestCase
 
     final public function testAPIhandle() : void
     {
-        $response = API::handle('GET');
+        $response = API::handleServerRequest(new ServerRequest('GET', '/.well-known/query'));
         $this->assertEquals(200, $response->getStatusCode());
     }
 
