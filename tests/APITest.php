@@ -14,7 +14,8 @@ class APITest extends TestCase
         $this->assertTrue(true);
     }
 
-    private function assertJSONResponse(string $expectedJson, ResponseInterface $response) : void {
+    private function assertJSONResponse(string $expectedJson, ResponseInterface $response): void
+    {
         $this->assertEquals('application/json', $response->getHeader('Content-Type')[0]);
         $this->assertJson($expectedJson, $response->getBody()->__toString());
     }
