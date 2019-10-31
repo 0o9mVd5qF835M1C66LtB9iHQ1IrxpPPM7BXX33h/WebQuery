@@ -15,6 +15,11 @@ class APITest extends TestCase
         $this->assertJsonStringEqualsJsonString($expectedJson, (string)$response->getBody());
     }
 
+    private function assert405Response(ResponseInterface $response) : void {
+        $this->assertEquals(405, $response->getStatusCode());
+        $this->assertEmpty((string)$response->getBody());
+    }
+
     final public function testSanity(): void
     {
         $this->assertTrue(true);
@@ -23,26 +28,22 @@ class APITest extends TestCase
     final public function testAPIhandleServerRequest_When_PUTMethod_Expect_405Response(): void
     {
         $response = API::handleServerRequest(new ServerRequest('PUT', '/.well-known/query'));
-        $this->assertEquals(405, $response->getStatusCode());
-        $this->assertEmpty((string)$response->getBody());
+        $this->assert405Response($response);
     }
     final public function testAPIhandleServerRequest_When_DELETEMethod_Expect_405Response(): void
     {
         $response = API::handleServerRequest(new ServerRequest('DELETE', '/.well-known/query'));
-        $this->assertEquals(405, $response->getStatusCode());
-        $this->assertEmpty((string)$response->getBody());
+        $this->assert405Response($response);
     }
     final public function testAPIhandleServerRequest_When_HEADMethod_Expect_405Response(): void
     {
         $response = API::handleServerRequest(new ServerRequest('HEAD', '/.well-known/query'));
-        $this->assertEquals(405, $response->getStatusCode());
-        $this->assertEmpty((string)$response->getBody());
+        $this->assert405Response($response);
     }
     final public function testAPIhandleServerRequest_When_OPTIONSMethod_Expect_405Response(): void
     {
         $response = API::handleServerRequest(new ServerRequest('OPTIONS', '/.well-known/query'));
-        $this->assertEquals(405, $response->getStatusCode());
-        $this->assertEmpty((string)$response->getBody());
+        $this->assert405Response($response);
     }
 
 
