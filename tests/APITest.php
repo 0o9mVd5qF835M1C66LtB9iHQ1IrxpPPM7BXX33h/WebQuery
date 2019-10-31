@@ -20,7 +20,10 @@ class APITest extends TestCase
         $this->assertEmpty((string)$response->getBody());
     }
 
-    final public function testSanity(): void
+    /**
+     * @test
+     */
+    final public function sanity(): void
     {
         $this->assertTrue(true);
     }
@@ -28,8 +31,9 @@ class APITest extends TestCase
 
     /**
      * @dataProvider disallowedMethods
+     * @test
      */
-    final public function testAPIhandleServerRequest_When_DisallowedMethod_Expect_405Response(string $method): void
+    final public function APIhandleServerRequest_When_DisallowedMethod_Expect_405Response(string $method): void
     {
         $response = API::handleServerRequest(new ServerRequest($method, '/.well-known/query'));
         $this->assert405Response($response);
@@ -43,15 +47,20 @@ class APITest extends TestCase
         ];
     }
 
-
-    final public function testAPIhandleServerRequest_When_GETDefaultURI_Expect_200Response(): void
+    /**
+     * @test
+     */
+    final public function APIhandleServerRequest_When_GETDefaultURI_Expect_200Response(): void
     {
         $response = API::handleServerRequest(new ServerRequest('GET', '/.well-known/query'));
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertJsonResponse('{}', $response);
     }
 
-    final public function testAPIhandleServerRequest_When_GETNonExistingURI_Expect_404Response(): void
+    /**
+     * @test
+     */
+    final public function APIhandleServerRequest_When_GETNonExistingURI_Expect_404Response(): void
     {
         $response = API::handleServerRequest(new ServerRequest('GET', '/.well-known/query/NonExisting'));
         $this->assertEquals(404, $response->getStatusCode());
@@ -59,7 +68,10 @@ class APITest extends TestCase
         $this->assertEmpty((string)$response->getBody());
     }
 
-    final public function testAPIhandleServerRequest_When_POSTCreateQuery_Expect_201Response(): void
+    /**
+     * @test
+     */
+    final public function APIhandleServerRequest_When_POSTCreateQuery_Expect_201Response(): void
     {
         $responseCreateQuery = API::handleServerRequest(new ServerRequest('POST', '/.well-known/query?q=hello'));
         $this->assertEquals(201, $responseCreateQuery->getStatusCode());
