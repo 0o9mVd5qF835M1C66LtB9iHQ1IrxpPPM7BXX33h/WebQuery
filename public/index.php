@@ -1,8 +1,11 @@
 <?php
+declare(strict_types=1);
+
+use rikmeijer\WebQuery\API;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-$response = \rikmeijer\WebQuery\API::handle($_SERVER['REQUEST_METHOD'], $_REQUEST);
+$response = API::handle();
 
 http_response_code($response->getStatusCode());
 foreach ($response->getHeaders() as $headerIdentifier => $headerValue) {
