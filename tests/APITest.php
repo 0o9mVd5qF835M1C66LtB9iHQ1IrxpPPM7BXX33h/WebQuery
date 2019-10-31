@@ -17,6 +17,7 @@ class APITest extends TestCase
     {
         $response = API::handleServerRequest(new ServerRequest('GET', '/.well-known/query'));
         $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals('application/json', $response->getHeader('Content-Type')[0]);
     }
 
     final public function testAPIhandleServerRequest_When_POSTCreateQuery_Expect_201Response(): void

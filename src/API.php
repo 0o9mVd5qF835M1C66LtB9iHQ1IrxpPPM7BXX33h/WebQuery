@@ -15,7 +15,7 @@ class API
             case 'POST':
                 return new Response(201);
             default:
-                return new Response(200);
+                return new Response(200, ['Content-Type' => 'application/json']);
         }
     }
 }
