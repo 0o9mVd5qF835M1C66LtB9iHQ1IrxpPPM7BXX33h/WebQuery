@@ -9,8 +9,13 @@ use Psr\Http\Message\ResponseInterface;
 class API
 {
 
-    public static function handle(): ResponseInterface
+    public static function handle(string $method = 'GET'): ResponseInterface
     {
-        return new Response(200);
+        switch ($method) {
+            case 'POST':
+                return new Response(201);
+            default:
+                return new Response(200);
+        }
     }
 }

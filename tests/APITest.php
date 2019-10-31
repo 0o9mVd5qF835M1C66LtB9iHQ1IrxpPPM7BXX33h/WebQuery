@@ -16,7 +16,11 @@ class APITest extends TestCase
     {
         $response = API::handle();
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertCount(0, $response->getHeaders());
     }
 
+    final public function testAPIhandlePOST() : void
+    {
+        $response = API::handle('POST');
+        $this->assertEquals(201, $response->getStatusCode());
+    }
 }
