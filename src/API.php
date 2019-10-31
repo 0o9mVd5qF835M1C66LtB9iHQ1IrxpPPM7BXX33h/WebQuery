@@ -11,11 +11,12 @@ class API
 {
     public static function handleServerRequest(ServerRequestInterface $request): ResponseInterface
     {
+        $headers = ['Content-Type' => 'application/json'];
         switch ($request->getMethod()) {
             case 'POST':
-                return new Response(201, ['Content-Type' => 'application/json']);
+                return new Response(201, $headers);
             default:
-                return new Response(200, ['Content-Type' => 'application/json']);
+                return new Response(200, $headers);
         }
     }
 }
