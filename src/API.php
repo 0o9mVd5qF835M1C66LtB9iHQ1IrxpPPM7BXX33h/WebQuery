@@ -15,6 +15,7 @@ class API
         $body = '{}';
         switch ($request->getMethod()) {
             case 'POST':
+                $headers['Location'] = '/.well-known/query/12345';
                 return new Response(201, $headers, $body);
             default:
                 return new Response(200, $headers, $body);
