@@ -25,7 +25,7 @@ class API
                 return new Response(404);
 
             default:
-                return new Response(405, $headers, '{}');
+                return new Response(405);
         }
     }
 }
