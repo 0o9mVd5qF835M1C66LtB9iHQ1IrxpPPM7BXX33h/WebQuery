@@ -5,6 +5,7 @@ namespace rikmeijer\WebQuery;
 
 use GuzzleHttp\Psr7\ServerRequest;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseInterface;
 
 class APITest extends TestCase
 {
@@ -13,11 +14,15 @@ class APITest extends TestCase
         $this->assertTrue(true);
     }
 
+    private function assertJSONResponse(ResponseInterface $response) {
+        $this->assertEquals('application/json', $response->getHeader('Content-Type')[0]);
+    }
+
     final public function testAPIhandleServerRequest_When_GETDefaultURI_Expect_200Response(): void
     {
         $response = API::handleServerRequest(new ServerRequest('GET', '/.well-known/query'));
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals('application/json', $response->getHeader('Content-Type')[0]);
+        $this->assertJSONResponse($response);
         $this->assertEquals('{}', $response->getBody()->__toString());
     }
 
@@ -25,7 +30,7 @@ class APITest extends TestCase
     {
         $response = API::handleServerRequest(new ServerRequest('POST', '/.well-known/query?q=hello'));
         $this->assertEquals(201, $response->getStatusCode());
-        $this->assertEquals('application/json', $response->getHeader('Content-Type')[0]);
+        $this->assertJSONResponse($response);
         $this->assertEquals('{}', $response->getBody()->__toString());
     }
 }
