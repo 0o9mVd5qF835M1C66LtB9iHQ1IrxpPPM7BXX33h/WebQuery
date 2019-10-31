@@ -6,6 +6,7 @@ namespace rikmeijer\WebQuery;
 use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use function GuzzleHttp\Psr7\stream_for;
 
 class API
 {
@@ -17,10 +18,12 @@ class API
                 $headers['Location'] = '/.well-known/query/12345';
                 return new Response(201, $headers, '{}');
             case 'GET':
+                $response = new Response(200, $headers);
                 if ($request->getUri()->getPath() === '/.well-known/query/12345') {
-                    return new Response(200, $headers, '{"results":{}}');
-                } elseif ($request->getUri()->getPath() === '/.well-known/query') {
-                    return new Response(200, $headers, '{}');
+                    return $response->withBody(stream_for('{"results":{}}'));
+                }
+                if ($request->getUri()->getPath() === '/.well-known/query') {
+                    return $response->withBody(stream_for('{}'));
                 }
                 return new Response(404);
 
