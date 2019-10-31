@@ -14,7 +14,7 @@
       "rikmeijer\\WebQuery\\": "src/"
     }
   },
-  "require" : {
+  "require": {
     "guzzlehttp/psr7": "1.6.*"
   },
   "require-dev": {

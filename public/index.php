@@ -7,7 +7,6 @@ use rikmeijer\WebQuery\API;
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 $response = API::handleServerRequest(ServerRequest::fromGlobals());
-
 http_response_code($response->getStatusCode());
 foreach ($response->getHeaders() as $headerIdentifier => $headerValue) {
     header($headerIdentifier . ': ' . implode(', ', $headerValue));

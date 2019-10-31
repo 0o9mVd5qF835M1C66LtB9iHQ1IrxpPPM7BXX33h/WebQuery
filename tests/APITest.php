@@ -13,13 +13,13 @@ class APITest extends TestCase
         $this->assertTrue(true);
     }
 
-    final public function testAPIhandle() : void
+    final public function testAPIhandle(): void
     {
         $response = API::handleServerRequest(new ServerRequest('GET', '/.well-known/query'));
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    final public function testAPIhandleServerRequestPOST() : void
+    final public function testAPIhandleServerRequestPOST(): void
     {
         $response = API::handleServerRequest(new ServerRequest('POST', '/.well-known/query?q=hello'));
         $this->assertEquals(201, $response->getStatusCode());

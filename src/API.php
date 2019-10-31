@@ -9,7 +9,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class API
 {
-    public static function handleServerRequest(ServerRequestInterface $request) : ResponseInterface
+    public static function handleServerRequest(ServerRequestInterface $request): ResponseInterface
     {
         switch ($request->getMethod()) {
             case 'POST':
