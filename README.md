@@ -13,10 +13,10 @@ POST .well-known/query?q=Hello
 
 ## 2. Server sends location of new search query
 201 Created
-Location: .well-known/query/<SEARCH-ID>
+Location: .well-known/query/&lt;SEARCH-ID&gt;
   
 ## 3. Dynamically updated resource containing already gathered search results
-GET .well-known/query/<SEARCH-ID>?[offset=0]
+GET .well-known/query/&lt;SEARCH-ID&gt;?[offset=0]
 
 ## 4. Actual response
 200 OK
