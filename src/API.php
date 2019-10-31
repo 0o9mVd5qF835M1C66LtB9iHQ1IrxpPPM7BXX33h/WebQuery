@@ -22,7 +22,7 @@ class API
                 } elseif ($request->getUri()->getPath() === '/.well-known/query') {
                     return new Response(200, $headers, '{}');
                 }
-                return new Response(404, $headers, '{}');
+                return new Response(404);
 
             default:
                 return new Response(405, $headers, '{}');

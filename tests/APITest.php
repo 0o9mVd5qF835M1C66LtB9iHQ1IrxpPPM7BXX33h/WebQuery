@@ -54,6 +54,7 @@ class APITest extends TestCase
         $response = API::handleServerRequest(new ServerRequest('GET', '/.well-known/query/NonExisting'));
         $this->assertEquals(404, $response->getStatusCode());
         $this->assertCount(0, $response->getHeaders());
+        $this->assertEmpty((string)$response->getBody());
     }
 
     final public function testAPIhandleServerRequest_When_POSTCreateQuery_Expect_201Response(): void
