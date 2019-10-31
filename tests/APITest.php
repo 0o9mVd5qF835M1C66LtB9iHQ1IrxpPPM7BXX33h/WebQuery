@@ -9,15 +9,15 @@ use Psr\Http\Message\ResponseInterface;
 
 class APITest extends TestCase
 {
-    final public function testSanity(): void
-    {
-        $this->assertTrue(true);
-    }
-
     private function assertJSONResponse(string $expectedJson, ResponseInterface $response): void
     {
         $this->assertEquals('application/json', $response->getHeader('Content-Type')[0]);
         $this->assertJson($expectedJson, $response->getBody()->__toString());
+    }
+
+    final public function testSanity(): void
+    {
+        $this->assertTrue(true);
     }
 
     final public function testAPIhandleServerRequest_When_GETDefaultURI_Expect_200Response(): void
